@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}登录 - SRE运维作业提交{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header text-center bg-primary text-white">
+                <h2>小登登录</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('login') }}">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="mb-3">
+                        {{ form.student_id.label(class="form-label") }}
+                        {{ form.student_id(class="form-control" + (" is-invalid" if form.student_id.errors else "")) }}
+                        {% for error in form.student_id.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="mb-3">
+                        {{ form.password.label(class="form-label") }}
+                        {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else "")) }}
+                        {% for error in form.password.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        {{ form.submit(class="btn btn-primary btn-lg") }}
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <p>没有账号？<a href="{{ url_for('register') }}">立即注册</a></p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

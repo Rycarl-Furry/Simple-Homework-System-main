@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}学生面板 - SRE作业提交{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2 class="text-center">作业提交</h2>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('submit_homework') }}" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            
+            <div class="mb-3">
+                {{ form.homework_number.label(class="form-label") }}
+                {{ form.homework_number(class="form-select") }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form.file.label(class="form-label") }}
+                {{ form.file(class="form-control") }}
+            </div>
+            
+            <div class="d-grid gap-2">
+                {{ form.submit(class="btn btn-primary btn-lg") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card mt-5">
+    <div class="card-header bg-secondary text-white">
+        <h3 class="text-center">已提交的作业</h3>
+    </div>
+    <div class="card-body">
+        {% if homeworks %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>作业选项</th>
+                            <th>文件名</th>
+                            <th>提交时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for homework in homeworks %}
+                        <tr>
+                            <td>{{ homework.name }}</td>
+                            <td>{{ homework.file_name }}</td>
+                            <td>{{ homework.submit_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>
+                                <a href="{{ url_for('download_homework', homework_id=homework.id) }}" class="btn btn-success btn-sm">下载</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-center text-muted">您还没有提交任何作业</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
