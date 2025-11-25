@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}登录 - SRE运维作业提交{% endblock %}
+{% block title %}登录 - 作业提交{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="card">
             <div class="card-header text-center bg-primary text-white">
-                <h2>小登登录</h2>
+                <h2>用户登录</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ url_for('login') }}">
+                <form method="POST" action="{{ url_for('auth.login') }}">
                     {{ form.hidden_tag() }}
                     
                     <div class="mb-3">
@@ -39,7 +39,7 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <p>没有账号？<a href="{{ url_for('register') }}">立即注册</a></p>
+                <p>没有账号？<a href="{{ url_for('auth.register') }}">立即注册</a></p>
                 
             </div>
         </div>

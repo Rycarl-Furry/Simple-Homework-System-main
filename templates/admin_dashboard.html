@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}管理员面板 - SRE作业提交{% endblock %}
+{% block title %}管理员面板 - 作业提交{% endblock %}
 
 {% block content %}
 <div class="card">
     <div class="card-header bg-primary text-white">
-        <h2 class="text-center">小登作业提交统计</h2>
+        <h2 class="text-center">作业提交统计</h2>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -80,8 +80,8 @@
                     <td>{{ homework.file_name }}</td>
                     <td>{{ homework.submit_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                     <td>
-                        <a href="{{ url_for('download_homework', homework_id=homework.id) }}" class="btn btn-success btn-sm">下载</a>
-                        <a href="{{ url_for('delete_homework', homework_id=homework.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('确定要删除这个作业吗？')">删除</a>
+                        <a href="{{ url_for('admin.download', homework_id=homework.id) }}" class="btn btn-success btn-sm">下载</a>
+                        <a href="{{ url_for('admin.delete', homework_id=homework.id) }}" class="btn btn-danger btn-sm">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
