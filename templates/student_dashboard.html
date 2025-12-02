@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}学生面板 - SRE作业提交{% endblock %}
+{% block title %}学生面板 - 作业提交{% endblock %}
 
 {% block content %}
 <div class="card">
@@ -8,7 +8,7 @@
         <h2 class="text-center">作业提交</h2>
     </div>
     <div class="card-body">
-        <form method="POST" action="{{ url_for('submit_homework') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ url_for('student.submit') }}" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
             
             <div class="mb-3">
@@ -51,7 +51,7 @@
                             <td>{{ homework.file_name }}</td>
                             <td>{{ homework.submit_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                             <td>
-                                <a href="{{ url_for('download_homework', homework_id=homework.id) }}" class="btn btn-success btn-sm">下载</a>
+                                <a href="{{ url_for('student.download', homework_id=homework.id) }}" class="btn btn-success btn-sm">下载</a>
                             </td>
                         </tr>
                         {% endfor %}
